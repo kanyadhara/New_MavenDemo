@@ -1,0 +1,20 @@
+pipeline{
+	node{
+	stages{
+	stage(git checkout){
+	steps{
+	step-->git clone
+	{}
+	}
+	step-->git tag
+	{}
+	}
+
+stage(build){
+	steps{
+	step{mvn clean install}
+	}
+}
+	}
+	}
+}
