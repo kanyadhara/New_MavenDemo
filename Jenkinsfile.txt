@@ -1,20 +1,17 @@
 pipeline{
-	node{
+	agent any
 	stages{
 	stage(git checkout){
 	steps{
-	step-->git clone
-	{}
+	git clone https://github.com/kanyadhara/New_MavenDemo.git
 	}
-	step-->git tag
-	{}
 	}
-
-stage(build){
+	}
+	stage('compile stage'){
 	steps{
-	step{mvn clean install}
+	withMaven(maven :'maven3'){
+	sh 'mvn clean compile'
 	}
-}
 	}
 	}
-}
+	}
